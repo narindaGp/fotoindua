@@ -1,0 +1,158 @@
+# setup awal/ depedencies
+
+git checkout -b narindaGp
+npm init -y
+code .gitignore
+  --> node_modules
+      catetan.txt
+
+code sandbox.js
+npm i pg express ejs sequelize 
+npm i -D sequelize-cli nodemon
+
+
+# setup db 
+npx sequelize-cli init
+setup database (nama db, username dan password)
+npx sequelize db:create 
+
+# setup/ generate model
+npx sequelize-cli model:generate --name (model name singular tanpa kurung) --attributes (column/ key name):(data type),varchar:string,number:integer,date:date,text:text,boolean:boolean
+https://sequelize.org/v5/manual/data-types.html
+
+npx sequelize-cli model:generate --name User --attributes username:string,email:string,password:string,role:string
+npx sequelize-cli model:generate --name Services --attributes name:string,description:text,price:integer,imageUrl:string
+npx sequelize-cli model:generate --name Detail --attributes status:boolean,requirement:text,availibility:string,timeOfContract:string
+
+# nambah coloumn
+npx sequelize-cli migration:create --name (migration name)
+npx sequelize-cli migration:create --name add-UserId-to-Services
+npx sequelize-cli migration:create --name add-ServiceId-to-Details
+
+addColumn >< removeColumn
+
+tambahkan associations relasi pada FK
+
+type: Sequelize.INTEGER,
+references: {
+  model: 'namaModel',
+  key: 'id'
+},
+onUpdate: 'CASCADE',
+onDelete: 'CASCADE',
+
+
+delete async await
+pake return,  
+
+https://sequelize.org/v6/class/lib/dialects/abstract/query-interface.js~QueryInterface.html
+
+# setup relasi associations
+migration baru untuk menambahkan constraint (addConstraint) reference pada 
+npx sequelize-cli migration:create --name (migration name)
+npx sequelize-cli migration:create --name add-CategoryId-to-Memes
+
+https://sequelize.org/v6/class/lib/dialects/abstract/query-interface.js~QueryInterface.html#instance-method-addConstraint
+
+
+pada model 
+cocokan column
+class associate 
+tambahkan hasOne/hasMany jika data table akan dioper/digunakan oleh table lain
+tambahkan belongsTo jika terdapat kolom data yang memiliki hubungan/ berasal dari table lain
+https://sequelize.org/master/manual/assocs.html
+
+
+npx sequelize db:migrate 
+
+# seeding
+
+npx sequelize-cli seed:generate --name <nama_seed>
+npx sequelize-cli seed:generate --name seed-Categories
+
+contoh seeding:
+
+npx sequelize-cli db:seed --seed 20220127072145-seed-Categories.js
+
+npx sequelize-cli db:seed:all
+
+
+IF WEIRD AFTER SEEDING:
+====================
+npx sequelize-cli db:migrate:undo:all
+npx sequelize-cli db:seed:undo:all
+npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
+
+// ga perlu amat sekarang
+mkdir views controllers routes
+
+
+"use strict";
+
+code controllers/controller.js 
+code app.js
+  --> buat route dengan express
+  --> https://expressjs.com/en/starter/hello-world.html
+  --> set view engine
+  --> https://expressjs.com/en/guide/using-template-engines.html
+    --> app.set('view engine', 'ejs')
+  --> set public untuk wadah css dan file lainnya yang di link di html/ejs
+    --> app.use('/', express.static('public'))
+  --> body parser untuk middle-ware
+    --> app.use(express.urlencoded({extended: true}))
+  
+hooks
+https://sequelize.org/master/manual/hooks.html
+di objek parameter kedua di Model.init tambahkan hooks: {}
+isinya bisa beforeCreate:(instance, options)
+
+validations
+https://sequelize.org/master/manual/validations-and-constraints.html#validators
+di objek parameter pertama di Model.init definisikan object yang mendeskripsikan key name object parameter
+misal allowNull, notEmpty, notNull, len untuk panjang karakter 
+jika ada argumenst yang membutuhkan minimal nomer tertentu masukkan angka yang tsb di array 
+untuk membuat custom validasi: buat namaValidasi(){argumen ketika error}
+
+helpers 
+buat folder helpers
+di dalamnya buat file sesuai kebutuhan dan exports function yang berkaitan
+require di controller masukkan di render yang akan dipakai
+
+eager loading
+https://sequelize.org/master/manual/eager-loading.html
+include: namaModel pada options
+akan masuk bergantung pada relation
+
+
+//? pake router bila perlukan
+pastikan ada folder routes da. ada file index untuk landing pagenya
+--> tambahkan parameter router yang mengarah(require) ke file router
+--> pake .use ke setiap app/router yang akan mengarahkan ke routes lain 
+--> pada get home('/') ganti cb dengan parameter route
+  code routes/index.js
+    --> express require('express')
+    --> Controller untuk landing page
+    --> router = express.Router();
+
+
+code controllers/controller.js 
+  --> untuk mengarahkan tampilan web pakai res.render
+  --> untuk menampilkan hasil di terminal pake res.send
+built in method for sequelize
+CREATE  : create
+READ    : findAll, findOne, findByPk, findAndCountAll, findOrCreate
+UPDATE  : update, increment, decrement
+DELETE  : destroy
+  --> https://sequelize.org/master/class/lib/model.js~Model.html
+
+
+code views/view.js 
+template table 
+  https://mdbootstrap.com/docs/standard/data/tables/
+template button
+  https://getbootstrap.com/docs/5.1/components/buttons/
+
+
+git add .
+git commit -m 'checkpoint'

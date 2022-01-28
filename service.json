@@ -1,0 +1,3 @@
+[{"name":"Clea","description":"proin risus praesent lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum","price":524199,"imageUrl":"http://dummyimage.com/100x100.png/cc0000/ffffff","UserId":1,"CategoryId":1},
+{"name":"Derward","description":"pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est","price":375251,"imageUrl":"http://dummyimage.com/100x100.png/cc0000/ffffff","UserId":2,"CategoryId":2},
+{"name":"My","description":"in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor","price":239428,"imageUrl":"http://dummyimage.com/100x100.png/5fa2dd/ffffff","UserId":3,"CategoryId":3}]

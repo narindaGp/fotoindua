@@ -1,0 +1,62 @@
+<%- include('./partials/top.ejs') %>
+
+  <h1 class="m-5 text-center">Users Detail</h1>
+  <hr>
+  <hr>
+  <h2>Edit</h2>
+  <hr>
+  
+
+      <!-- <div class="row"> -->
+    <form class="row" action="/users/<%= data.id %>/edit" method="post">
+      <div class="col-10">
+            <label for="" class="form-label" >Name</label>
+            <input type="text" class="form-control" name="name" value="<%= data.name %>">
+            <label for="" class="form-label">Description</label>
+            <textarea name="description" class="form-control" id="" cols="30" rows="10"><%= data.description %></textarea>
+            <label for="" class="form-label">price</label>
+            <input type="number" class="form-control" name="price" value="<%= data.price %>">
+            <label for="" class="form-label">Image URL</label>
+            <input type="text" class="form-control" name="imageUrl" value="<%= data.imageUrl %>">
+            <label for="" class="form-Label">Category:</label>
+            <select name="CategoryId" class="form-select" id="">
+              <% if(data.CategoryId == 1) { %>
+                <option selected value="1">Photography</option>
+                <option value="2">Videography</option>
+                <option value="3">Illustrator</option>
+              <% } else if(data.CategoryId == 2){ %>
+                <option value="1">Photography</option>
+                <option selected value="2">Videography</option>
+                <option value="3">Illustrator</option>
+              <% } else if(data.CategoryId == 3){ %>
+                <option value="1">Photography</option>
+                <option value="2">Videography</option>
+                <option selected value="3">Illustrator</option>
+              <%} %>
+            </select>
+            <hr>
+            <h2>detail</h2>
+            <hr>
+            <label for="" class="form-label">Status</label>
+            <select name="status" id="">
+              <% if(data.Detail.status == true){ %>
+                <option selected value="true">available</option>
+                <option value="false">unavailable</option>
+              <% } else { %>
+                <option selected value="false">unavailable</option>
+                <option value="false">unavailable</option>
+              <% } %>
+            </select>
+            <label for="" class="form-label">Requirement</label>
+            <textarea name="requirement" class="form-control" id="" cols="30" rows="10"><%= data.Detail.requirement %></textarea>
+            <label for="" class="form-label">Estimate project duration</label>
+            <input type="number" class="form-control" name="timeOfContract" value="<%= data.Detail.timeOfContract %>">
+          </div>
+            
+            <button type="submit" class="btn btn-primary m-5">Add Service</button>
+      </div>
+    </form>
+  
+  
+</body>
+</html>

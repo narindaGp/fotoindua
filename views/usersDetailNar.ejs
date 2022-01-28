@@ -1,0 +1,42 @@
+<%- include('./partials/top.ejs') %>
+
+  <h1 class="m-5 text-center">Users Detail</h1>
+  <hr>
+  <p><span>Username:</span> <%= user.username %> </p>
+  <p><span>E-mail:</span><%= user.email %></p>
+  <p><span>Role:</span><%= user.role %></p>
+
+  <a href="/users/<%= user.id %>/addService" class="btn btn-primary">add service</a>
+
+  <hr>
+  <h2>service list</h2>
+  <hr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col-5">Name</th>
+        <th scope="col-5">Description</th>
+        <th scope="col-5">Price</th>
+        <th scope="col-2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% services.forEach(el =>{ %>
+
+        <tr>
+          <td><%= el.name %></td>
+          <td><%= el.description %></td>
+          <td><%= el.formatPrice()%></td>
+          <td>
+            <a href="/users/<%= el.id %>/edit" class="btn btn-secondary">edit</a>
+            <a href="/users/<%= el.id %>/add/gallery" class="btn btn-secondary">add galery</a>
+            <a href="/users/<%= el.id %>/detail/delete" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+
+    </tbody>
+  </table>
+  
+</body>
+</html>

@@ -1,0 +1,20 @@
+<%- include('./partials/top.ejs') %>
+
+ 
+  <hr>
+  <h2>Add Gallery</h2>
+  <hr>
+  
+ 
+  
+  <h3 class="m-3">Add gallery</h3>
+  <form action="/users/<%= service.id %>/add/gallery" method="post" enctype="multipart/form-data">
+    <label for="">Upload gallery</label>
+    <input type="file" name="avatar" id="avatar"/>
+    <br>
+    <label for="" class="form-label">Alternate text</label>
+    <input type="text" class="form-control" name="alternate">
+    <button type="submit" class="btn btn-primary m-5">upload</button>
+  </form>
+</body>
+</html>

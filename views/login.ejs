@@ -1,0 +1,15 @@
+
+  <%- include('./partials/top.ejs') %>
+  <% if(error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+  <form action="/" method="post">
+    <label>Email</label> <br>
+    <input type="email" name="email"><br><br>
+    <label>Password</label> <br>
+    <input type="password" name="password"><br><br>
+    <input type="submit" value="Submit">
+    <a href="/register">register</a>
+  </form>
+</body>
+</html>

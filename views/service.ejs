@@ -1,0 +1,44 @@
+
+  <%- include('./partials/top.ejs') %>
+  <h1 class="m-5 text-center">Service List</h1>
+  <hr>
+  <form class="m-5 d-flex input-group w-auto" action="/services" method="get">
+    <input
+      type="search"
+      class="form-control"
+      placeholder="Search Service Name"
+      aria-label="Search"
+      name="search"
+    />
+    <button
+      class="btn btn-outline-primary"
+      type="submit"
+      data-mdb-ripple-color="dark"
+    >
+      Search
+    </button>
+  </form>
+  <hr>
+  <table class="table mt-5">
+    <tr>
+      <th>Nama</th>
+      <th>Image</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Action</th>
+    </tr>
+    <% data.forEach(el => { %>
+      <tr>
+        <td><%= el.name %></td>
+        <td><img src="<%= el.imageUrl %>" alt=""></td>
+        <td><%= el.formatPrice() %></td>
+        <td><%= el.Category.name %></td>
+        <td>
+          <a href="/services/<%= el.id %>">detail</a>
+        </td>
+      </tr>
+    <% }) %>
+    
+  </table> 
+</body>
+</html>

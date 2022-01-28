@@ -1,0 +1,45 @@
+<%- include('./partials/top.ejs') %>
+
+  <h1 class="m-5 text-center">Users Detail</h1>
+  <hr>
+  <p><span>Username:</span> <%= user.username %> </p>
+  <p><span>E-mail:</span><%= user.email %></p>
+  <p><span>Role:</span><%= user.role %></p>
+  <a href="/users/<%= user.id %>/edit" class="btn btn-secondary">edit</a>
+  <a href="/users/<%= user.id %>/addService" class="btn btn-primary">add service</a>
+  <hr>
+  <h2>add service detail</h2>
+  <hr>
+  
+  <form action="/services/<%= user.id %>/add" method="post">
+    <div class="container mt-5">
+      <!-- <div class="row"> -->
+        <form class="row" action="/users/<%= user.id %>/addService" method="post">
+  
+          <div class="col-10">
+           
+            <hr>
+            <h2>detail</h2>
+            <hr>
+            <label for="" class="form-label">Status</label>
+            <select name="status" id="">
+              <option value="true">available</option>
+              <option value="false">unavailable</option>
+            </select>
+            <label for="" class="form-label">Requirement</label>
+            <textarea name="requirement" class="form-control" id="" cols="30" rows="10"></textarea>
+            <label for="" class="form-label">Estimate project duration</label>
+            <input type="number" class="form-control" name="timeOfContract">
+            
+          </div>
+         
+            
+            <button type="submit" class="btn btn-primary m-5">Add Service</button>
+          </div>
+        </form>
+      <!-- </div>   -->
+    </div>
+  </form>
+  
+</body>
+</html>

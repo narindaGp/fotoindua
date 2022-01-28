@@ -1,0 +1,33 @@
+
+  <%- include('./partials/top.ejs') %>
+
+  <h1 class="m-5 text-center">Users list</h1>
+  <hr>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col-5">Username</th>
+        <th scope="col-5">Role</th>
+        <th scope="col-2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(el =>{ %>
+
+        <tr>
+          <td><%= el.username %></td>
+          <td><%= el.role %></td>
+          <td>
+            <a href="/users/<%= el.id %>/detail" class="btn btn-secondary">Services</a>
+            <a href="/users/<%= el.id %>/delete" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+  
+      
+    </tbody>
+  </table>
+  
+</body>
+</html>
