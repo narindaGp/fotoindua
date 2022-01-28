@@ -40,6 +40,7 @@ npx sequelize-cli migration:create --name add-CategoryId-to-Services
 npx sequelize-cli migration:create --name add-DetailId-to-Galeries
 
 
+npx sequelize-cli db:seed --seed 20220127100310-categories
 ===== deploy heroku =====
 
 --- udah ngerjain dii github ---
